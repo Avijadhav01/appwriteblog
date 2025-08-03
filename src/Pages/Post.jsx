@@ -51,7 +51,7 @@ export default function Post() {
   return post ? (
     <div className="py-10 bg-gray-100 min-h-screen">
       <Container>
-        <div className="w-full flex justify-center mb-8 relative rounded-xl overflow-hidden shadow-md h-72 bg-white border border-gray-300">
+        <div className="w-full h-[600px] flex justify-center mb-8 relative rounded-xl overflow-hidden shadow-md bg-white border border-gray-300">
           {post.featuredimage ? (
             <img
               src={appwriteService.getFileView(post.featuredimage)}

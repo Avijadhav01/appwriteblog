@@ -26,7 +26,7 @@ function App({ children }) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 text-gray-700 text-xl font-medium">
-        Loading BlogZone...
+        ◯  Loading BlogZone...
       </div>
     );
   }

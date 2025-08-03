@@ -19,7 +19,7 @@ function Home() {
 
   if (posts && posts.length === 0) {
     return (
-      <div className="w-full py-12 bg-gray-100 min-h-screen">
+      <div className="w-full py-12 bg-gray-100 min-h-[350px]">
         <Container>
           <div className="text-center py-10">
             <h1 className="text-3xl font-bold text-gray-700 mb-4">

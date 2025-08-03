@@ -42,6 +42,7 @@ function PostForm({ post }) {
             if (name === 'title') {
                 setValue('slug', slugTransform(value.title), { shouldValidate: true });
             }
+            console.log("userdata: ", userData)
         });
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);

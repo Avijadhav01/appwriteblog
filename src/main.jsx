@@ -15,6 +15,8 @@ import EditPost from './Pages/EditPost.jsx';
 import AllPosts from './Pages/AllPosts.jsx';
 import Post from './Pages/Post.jsx';
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>

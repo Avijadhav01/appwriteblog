@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import authService from '../appwrite/auth';
-import { useForm } from 'react-hook-form';
 import { Button, Input, Logo } from './index';
 import { login } from '../Store/authSlice';
+import { useForm } from 'react-hook-form';
 
 function Signup() {
   const [error, setError] = useState("");
@@ -12,19 +12,17 @@ function Signup() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
-  const create = async (data) => {
-    console.log("create")
+  const handleSignup = async (data) => {
+    console.log("creating Accouny...");
     setError("");
 
     try {
       const account = await authService.createAccount(data);
-      console.log("account creted :", account)
       if (account) {
-        const currentUser = await authService.getCurrentUser();
-        if (currentUser) {
-          dispatch(login(currentUser));
-          navigate("/");
-        }
+        const UserData = await authService.getCurrentUser();
+
+        if (UserData) dispatch(login(UserData));
+        navigate("/");
       }
     } catch (error) {
       setError(error.message);
@@ -37,7 +35,7 @@ function Signup() {
 
         {/* Logo */}
         <div className='flex justify-center mb-6'>
-          <Logo width="50" />
+          <Logo width="50px" />
         </div>
 
         {/* Title */}
@@ -50,8 +48,8 @@ function Signup() {
           Already have an account?{" "}
           <Link
             to="/login"
-            className='text-purple-600 hover:underline font-medium'>
-            Log in here
+            className='text-purple-600 hover:underline font-medium underline'>
+            Log in
           </Link>
         </p>
 
@@ -63,7 +61,7 @@ function Signup() {
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit(create)} className='space-y-5'>
+        <form onSubmit={handleSubmit(handleSignup)} className='space-y-5'>
 
           <Input
             label="Full Name"
@@ -92,8 +90,8 @@ function Signup() {
             {...register("password", {
               required: true,
               minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters",
+                value: 8,
+                message: "Password must be at least 8 characters",
               },
             })}
           />

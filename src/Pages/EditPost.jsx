@@ -4,7 +4,7 @@ import appwriteService from "../appwrite/config";
 import { useNavigate, useParams } from 'react-router-dom';
 
 function EditPost() {
-  const [post, setPost] = useState(null); // use null instead of [] for object type
+  const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -12,15 +12,14 @@ function EditPost() {
   useEffect(() => {
     if (slug) {
       appwriteService.getPost(slug).then((post) => {
-        if (post) {
-          setPost(post);
-        } else {
-          navigate('/'); // go back if post not found
-        }
+        if (post) setPost(post);
+        else navigate('/');
+
         setLoading(false);
       });
     } else {
       navigate('/');
+      setLoading(false);
     }
   }, [slug, navigate]);
 

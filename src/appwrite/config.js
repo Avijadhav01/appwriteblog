@@ -25,7 +25,7 @@ export class Service {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        ID.unique(), // ✅ generate unique ID instead of using slug
+        slug,
         {
           title,
           content,
@@ -35,10 +35,11 @@ export class Service {
         }
       );
     } catch (error) {
-      console.error("Service :: createPost :: Error", error);
+      console.log("Service :: createPost :: Error", error);
       throw new Error("Failed to create post.");
     }
   }
+
   // ✅ Update an existing post
   async updatePost(slug, { title, content, featuredimage, status }) {
     try {
@@ -102,6 +103,7 @@ export class Service {
     }
   }
 
+  // Storage Service
   // ✅ Upload a file
   async uploadFile(file) {
     try {
@@ -111,7 +113,7 @@ export class Service {
         file
       );
     } catch (error) {
-      console.error("Service :: uploadFile :: Error", error);
+      console.log("Service :: uploadFile :: Error", error);
       return null;
     }
   }
@@ -122,7 +124,7 @@ export class Service {
       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
-      console.error("Service :: deleteFile :: Error", error);
+      console.log("Service :: deleteFile :: Error", error);
       return false;
     }
   }
@@ -133,6 +135,5 @@ export class Service {
   }
 }
 
-// ✅ Export singleton instance
 const service = new Service();
 export default service;

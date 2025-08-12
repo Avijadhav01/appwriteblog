@@ -19,7 +19,6 @@ export default function Post() {
       appwriteService.getPost(slug).then((post) => {
         if (post) {
           setPost(post);
-
         } else {
           navigate("/");
         }
@@ -64,25 +63,27 @@ export default function Post() {
             </div>
           )}
 
-          {isAuthor && (
-            <div className="absolute right-4 top-4 flex gap-2">
-              <Link to={`/edit-post/${post.$id}`}>
+          {
+            isAuthor && (
+              <div className="absolute right-1 top-1 flex gap-1">
+                <Link to={`/edit-post/${post.$id}`}>
+                  <Button
+                    bgColor="bg-green-500"
+                    className="hover:bg-green-600 shadow-md rounded-md px-2 py-1"
+                  >
+                    📝
+                  </Button>
+                </Link>
                 <Button
-                  bgColor="bg-green-500"
-                  className="hover:bg-green-600 shadow-md rounded-md px-2 py-1"
+                  bgColor="bg-red-500"
+                  onClick={deletePost}
+                  className="hover:bg-red-600 shadow-md rounded-md px-2 py-1"
                 >
-                  📝
+                  🗑️
                 </Button>
-              </Link>
-              <Button
-                bgColor="bg-red-500"
-                onClick={deletePost}
-                className="hover:bg-red-600 shadow-md rounded-md px-2 py-1"
-              >
-                🗑️
-              </Button>
-            </div>
-          )}
+              </div>
+            )
+          }
         </div>
 
         <div className="w-full mb-6 px-2 sm:px-4">

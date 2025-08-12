@@ -7,7 +7,7 @@ export class AuthService {
 
   constructor() {
     try {
-      // Validate configuration
+      // Ensure Appwrite configuration is provided
       if (!conf.appwriteUrl || !conf.appwriteProjectId) {
         throw new Error("Missing Appwrite configuration: URL or Project ID");
       }
@@ -18,8 +18,8 @@ export class AuthService {
 
       this.account = new Account(this.client);
     } catch (error) {
-      // console.error("AuthService :: constructor error:", error);
-      throw error; // Let caller handle if needed
+      console.error("AuthService :: constructor error:", error);
+      throw error;
     }
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
         name
       );
 
-      console.log("Account created successfully:", userAccount);
+      console.log("Account created successfully:", userAccount?.name);
       return await this.login({ email, password });
     } catch (error) {
       console.error("AuthService :: createAccount error:", error);
@@ -46,10 +46,10 @@ export class AuthService {
         email,
         password
       );
-      console.log("Login successful:", userLogin);
+      console.log("Login successful:", userLogin?.$id);
       return userLogin;
     } catch (error) {
-      console.error("AuthService :: login error:", error);
+      console.log("AuthService :: login error:", error);
       throw new Error("Login failed. Please check your credentials.");
     }
   }
@@ -57,9 +57,10 @@ export class AuthService {
   async getCurrentUser() {
     try {
       const currentUser = await this.account.get();
-      console.log("Fetched current user:", currentUser.name);
+      // console.log("Fetched current user:", currentUser?.name);
       return currentUser;
     } catch (error) {
+      console.log("Appwrite serive :: getCurrentUser error:", error);
       return null;
     }
   }
@@ -69,7 +70,7 @@ export class AuthService {
       await this.account.deleteSessions();
       console.log("Logout successful.");
     } catch (error) {
-      console.error("AuthService :: logout error:", error);
+      console.log("AuthService :: logout error:", error);
     }
   }
 

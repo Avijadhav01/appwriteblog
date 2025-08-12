@@ -3,7 +3,7 @@ import { Logo } from '../index';
 
 function Footer() {
   return (
-    <footer className="bg-gray-800 text-gray-300 py-10 border-t border-gray-700">
+    <footer className="bg-gray-800 text-gray-300 py-5 border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-4">
         {/* Top Row: Logo & Copyright */}
         <div className="flex flex-col items-center justify-center mb-8">

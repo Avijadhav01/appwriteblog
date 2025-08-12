@@ -4,8 +4,11 @@ import { useSelector } from 'react-redux';
 
 const Spinner = () => (
   <div className="flex flex-col justify-center items-center py-20 min-h-[60vh] bg-white">
-    <div className="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-    <p className="mt-4 text-lg text-gray-700 font-medium">Checking authentication...</p>
+    <div className="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin">
+    </div>
+    <p className="mt-4 text-lg text-gray-700 font-medium">
+      Checking authentication...
+    </p>
   </div>
 );
 
@@ -19,7 +22,6 @@ export default function AuthLayout({ children, authentication = true }) {
       navigate('/login');
       return;
     }
-
     if (!authentication && authStatus) {
       navigate('/');
       return;

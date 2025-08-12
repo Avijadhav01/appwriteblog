@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useEffect } from "react";
 
 const initialState = {
   status: false,
@@ -10,6 +11,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
+      // console.log("Payload:", action.payload);
+
       state.status = true;
       state.userData = action.payload.userData;
     },

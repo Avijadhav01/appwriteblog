@@ -5,11 +5,14 @@ import { Controller } from 'react-hook-form';
 export default function RTE({ name, control, label, defaultValue = "" }) {
   return (
     <div className="w-full mb-6">
-      {label && (
-        <label className="block text-sm font-semibold text-gray-700 mb-2 pl-1">
-          {label}
-        </label>
-      )}
+      {
+        label && (
+          <label
+            className="block text-sm font-semibold text-gray-700 mb-2 pl-1">
+            {label}
+          </label>
+        )
+      }
 
       <div className="overflow-hidden rounded-xl shadow-sm border border-gray-300">
         <Controller
@@ -19,8 +22,9 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
             <Editor
               apiKey="4iq1q2wyxjss9uycnussdr0wpsajiukuzkdq2xh00b9b4x6a"
               init={{
+                branding: false,
                 initialValue: defaultValue,
-                height: 400,
+                height: 300,
                 menubar: true,
                 plugins: [
                   "image",

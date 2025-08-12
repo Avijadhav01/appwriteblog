@@ -2,7 +2,6 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import store from './Store/Store.js';
 import './index.css';
 import App from './App.jsx';
@@ -15,13 +14,14 @@ import EditPost from './Pages/EditPost.jsx';
 import AllPosts from './Pages/AllPosts.jsx';
 import Post from './Pages/Post.jsx';
 
-import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <App>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route
@@ -66,6 +66,8 @@ createRoot(document.getElementById('root')).render(
             />
             <Route path="/post/:slug" element={<Post />} />
           </Routes>
+
+
         </App>
       </BrowserRouter>
     </Provider>

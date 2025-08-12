@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Logo, LogoutBtn } from '../index';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -29,12 +28,12 @@ function Header() {
 
           {/* Navigation Menu */}
           <ul className="flex gap-2 items-center mt-3 sm:mt-0">
-            {navItems.map((item) => {
+            {navItems.map((item, index) => {
               const isActive = location.pathname === item.slug;
 
               return (
                 item.active && (
-                  <li key={item.name} className="md:text-[14px] text-[10px]">
+                  <li key={index} className="md:text-[14px] text-[10px]">
                     <Link
                       to={item.slug}
                       className={`px-4 py-2 rounded-lg transition duration-300 ${isActive
